@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<title>Blog</title>
+</head>
+<body>
+	<div class="container bg-light rounded">
+		<div class="row">
+			<div class="col-12">
+				<label for="titleBox">Titel</label>
+				<input type="text" id="titleBox">
+				<label for="dateBox">Datum</label>
+				<input type="text" id="dateBox">
+				<label for="contentBox">Bloginhalt</label>
+				<input type="text" id="contentBox">
+				<button id="createArticleButton">Artikel erstellen</button>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#createArticleButton').on('click', function(){
+				$.ajax({
+					method:'POST',
+					url:'/entries',
+					data:{"title":$('#titleBox').val(),"date":$('#dateBox').val(),"content":$('#contentBox').val()},
+					success:function(){
+						alert("Artikel erstellt!");
+					}
+				});
+			});
+		})
+	</script>
+</body>
+</html>
