@@ -34,4 +34,11 @@ app.post('/entries', function(req, res){
 	fs.writeFileSync(filename, JSON.stringify(entries));
 	res.contentType("text/html");
 	res.status(201).send("OK");
-})
+});
+
+app.delete('/entries/:id', function(req, res){
+	entries.splice(req.params.id, 1);
+	fs.writeFileSync(filename, JSON.stringify(entries));
+	res.contentType("text/html");
+	res.status(200).send("Element mit der ID " + req.params.id + " wurde gelöscht.");
+});

@@ -27,17 +27,28 @@
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
+		function deleteEntry(index){
+			$.ajax({
+				method:'DELETE',
+				url:'/entries/' + index,
+				success:function(data){
+					alert(data);
+					location.reload();
+				}
+			});
+		}
+
 		$(document).ready(function(){
 			$.ajax({
 				method:'GET',
 				url:'/entries',
 				success:function(data){
 					for(let i = 0; i < data.length; i++){
-						$('#articles').append('<div class="row"><div class="col-12"><h4>' + data[i].title + '</h4><p></p>' + data[i].date + '<p>' + data[i].content + '</p></div></div>');
+						$('#articles').append('<div class="row"><div class="col-12"><h4>' + data[i].title + '</h4><p></p>' + data[i].date + '<p>' + data[i].content + '</p><button onclick="deleteEntry(' + i + ')">Löschen</button></div></div>');
 					}
 				}
 			});
-		})
+		});
 	</script>
 </body>
 </html>
