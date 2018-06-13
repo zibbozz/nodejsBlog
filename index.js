@@ -2,10 +2,9 @@ let http = require("http");
 let express = require("express");
 let app = express();
 let fs = require("fs");
-let bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 app.use(express.static(__dirname + '/app'));
 
 let server = http.createServer(app);
